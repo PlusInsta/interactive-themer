@@ -1,4 +1,7 @@
 <html>
+<meta>
+  <link rel="stylesheet" href="styles.css">
+</meta>
 <body>
 <div class="app">
   <div class="container">
@@ -17,56 +20,6 @@
   </div>
 </div>
 </body>
-<style>
-:root {
-  --hue: 0;
-}
-body {
-  background-color: #efefef;
-  padding: 0;
-  margin: 0;
-  .app {
-    margin: 8px;
-    height: calc(100% / 8 * 7);
-    .settings {
-      display: flex;
-      height: calc(100% / 8 * 1);
-      text-align: center;
-      align-content: center;
-      width: 480px;
-      & input {
-        width: 360px;
-      }
-      & p {
-      text-align: left;
-      font-size: 32px;
-      align-self: center;
-      margin: 8px;
-      background: #efefef;
-      font-family: system-ui;
-      }
-    }
-    .container {
-      display: flex;
-      height: 100%;
-      & .color {
-        width: 50%;
-        text-align: center;
-        background: hsl(var(--hue-shifted, var(--hue)),75%,75%);
-        color: hsl(var(--hue-shifted, var(--hue)),50%,25%);
-        font-family: Bahnschrift;
-        font-size: 4rem;
-        &.shifted {
-          --hue-shifted: calc(var(--hue) - 120);
-        }
-        & .hue-counter {
-          font-size: 2rem;
-        }
-      }
-    }
-  }
-}
-</style>
 <script>
 function updateColor(inputElement) {
   const inputValue = inputElement.value;
