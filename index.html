@@ -1,0 +1,88 @@
+<html>
+<body>
+<div class="app">
+  <div class="container">
+    <div class="normal color">
+      <p>Normal color</p>
+      <p class="normal hue-counter" id="normalHue">Let's paint the town red!</p>
+    </div>
+    <div class="shifted color">
+      <p>Shifted color</p>
+      <p class="shifted hue-counter" id="shiftedHue">I'm blue, if I was green I would die.</p>
+    </div>
+  </div>
+  <div class="settings">
+    <input type="range" id="totakeke" oninput="updateColor(this)" min="0" max="359" value="0">
+    <p class="hue-counter" id="sliderValueDisplay">JavaScript might be off</p>
+  </div>
+</div>
+</body>
+<style>
+:root {
+  --hue: 0;
+}
+body {
+  background-color: #efefef;
+  padding: 0;
+  margin: 0;
+  .app {
+    margin: 8px;
+    height: calc(100% / 8 * 7);
+    .settings {
+      display: flex;
+      height: calc(100% / 8 * 1);
+      text-align: center;
+      align-content: center;
+      width: 480px;
+      & input {
+        width: 360px;
+      }
+      & p {
+      text-align: left;
+      font-size: 32px;
+      align-self: center;
+      margin: 8px;
+      background: #efefef;
+      font-family: system-ui;
+      }
+    }
+    .container {
+      display: flex;
+      height: 100%;
+      & .color {
+        width: 50%;
+        text-align: center;
+        background: hsl(var(--hue-shifted, var(--hue)),75%,75%);
+        color: hsl(var(--hue-shifted, var(--hue)),50%,25%);
+        font-family: Bahnschrift;
+        font-size: 4rem;
+        &.shifted {
+          --hue-shifted: calc(var(--hue) - 120);
+        }
+        & .hue-counter {
+          font-size: 2rem;
+        }
+      }
+    }
+  }
+}
+</style>
+<script>
+function updateColor(inputElement) {
+  const inputValue = inputElement.value;
+  
+  if (/^\d+$/.test(inputValue)) {
+    document.documentElement.style.setProperty('--hue', inputValue);
+    document.getElementById('sliderValueDisplay').textContent = inputValue;
+    document.getElementById('normalHue').textContent = inputValue;
+    document.getElementById('shiftedHue').textContent = inputValue - 120;
+  } else {
+    inputElement.value = '120';
+    document.getElementById('sliderValueDisplay').textContent = "Invalid. Somehow.";
+    document.getElementById('normalHue').textContent = "Insert PLAYSTATION or PLAYSTATION 2 format DISC.";
+    document.getElementById('shiftedHue').textContent = "This is so sad, Alexa play Despacito.";
+  }
+}
+updateColor(document.getElementById('totakeke'));
+</script>
+</html>
