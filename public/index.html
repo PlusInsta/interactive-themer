@@ -1,23 +1,41 @@
-<!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <meta name="generator" content="GitLab Pages">
-    <title>Plain HTML site using GitLab Pages</title>
-    <link rel="stylesheet" href="style.css">
-  </head>
-  <body>
-    <div class="navbar">
-      <a href="https://pages.gitlab.io/plain-html/">Plain HTML Example</a>
-      <a href="https://gitlab.com/pages/plain-html/">Repository</a>
-      <a href="https://gitlab.com/pages/">Other Examples</a>
+<meta>
+  <link rel="stylesheet" href="styles.css">
+</meta>
+<body>
+<div class="app">
+  <div class="container">
+    <div class="normal color">
+      <p>Normal color</p>
+      <p class="normal hue-counter" id="normalHue">Let's paint the town red!</p>
     </div>
-
-    <h1>Hello World!</h1>
-
-    <p>
-      This is a simple plain-HTML website on GitLab Pages, without any fancy static site generator.
-    </p>
-  </body>
+    <div class="shifted color">
+      <p>Shifted color</p>
+      <p class="shifted hue-counter" id="shiftedHue">I'm blue, if I was green I would die.</p>
+    </div>
+  </div>
+  <div class="settings">
+    <input type="range" id="totakeke" oninput="updateColor(this)" min="0" max="359" value="0">
+    <p class="hue-counter" id="sliderValueDisplay">JavaScript might be off</p>
+  </div>
+</div>
+</body>
+<script>
+function updateColor(inputElement) {
+  const inputValue = inputElement.value;
+  
+  if (/^\d+$/.test(inputValue)) {
+    document.documentElement.style.setProperty('--hue', inputValue);
+    document.getElementById('sliderValueDisplay').textContent = inputValue;
+    document.getElementById('normalHue').textContent = inputValue;
+    document.getElementById('shiftedHue').textContent = inputValue - 120;
+  } else {
+    inputElement.value = '120';
+    document.getElementById('sliderValueDisplay').textContent = "Invalid. Somehow.";
+    document.getElementById('normalHue').textContent = "Insert PLAYSTATION or PLAYSTATION 2 format DISC.";
+    document.getElementById('shiftedHue').textContent = "This is so sad, Alexa play Despacito.";
+  }
+}
+updateColor(document.getElementById('totakeke'));
+</script>
 </html>
-
